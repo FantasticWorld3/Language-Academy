@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning Hub</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .course {
+            position: relative;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .course:hover {
+            transform: scale(1.05);
+        }
+
+        .course h2 {
+            margin-bottom: 10px;
+            color: #3498db;
+        }
+
+        .course p {
+            color: #777;
+        }
+
+        .yes-button,
+        .yes-button-french {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Language Learning Hub</h1>
+        <p>Explore and learn different languages with us!</p>
+    </header>
+
+    <section>
+        <div class="course" onclick="startTypingAnimation('Spanish')">
+            <h2>Spanish for Beginners</h2>
+            <p id="typing-output-Spanish"></p>
+            <button class="yes-button" onclick="redirectToQuiz('Spanish')">Yes</button>
+        </div>
+
+        <div class="course" onclick="startTypingAnimation('French')">
+            <h2>French for Beginners</h2>
+            <p id="typing-output-French"></p>
+            <button class="yes-button-french" onclick="redirectToQuiz('French')">Yes</button>
+        </div>
+    </section>
+
+    <script>
+        function startTypingAnimation(language) {
+            const typingOutput = document.getElementById(`typing-output-${language}`);
+            const yesButtonSpanish = document.querySelector('.yes-button');
+            const yesButtonFrench = document.querySelector('.yes-button-french');
+
+            const text = `Hello! Welcome to the Language Academy where you can learn different languages.\n\nYou want to learn ${language.toLowerCase()}, am I right?`;
+
+            typingOutput.innerHTML = "";
+            typingEffect(text, typingOutput, 50, () => {
+                if (language === 'Spanish') {
+                    yesButtonSpanish.style.display = 'block';
+                } else if (language === 'French') {
+                    yesButtonFrench.style.display = 'block';
+                }
+            });
+        }
+
+        function typingEffect(text, targetElement, typingSpeed, callback) {
+            let charIndex = 0;
+            const timer = setInterval(() => {
+                targetElement.innerHTML += text.charAt(charIndex);
+                charIndex++;
+                if (charIndex === text.length) {
+                    clearInterval(timer);
+                    callback();
+                }
+            }, typingSpeed);
+        }
+
+        function redirectToQuiz(language) {
+            // Replace with the actual path to your quiz page for each language
+            if (language === 'Spanish') {
+                window.location.href = 'Spanish.html';
+            } else if (language === 'French') {
+                window.location.href = 'French.html';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+</html>

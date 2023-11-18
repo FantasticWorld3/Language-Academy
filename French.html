@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Academy</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .bullet-points {
+            margin-left: 20px;
+        }
+
+        .bullet-points li {
+            margin-bottom: 10px;
+        }
+
+        #additional-info {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        #ok-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>French Academy</h1>
+    </header>
+
+    <section>
+        <h2>Basics of Learning French</h2>
+        <ul class="bullet-points">
+            <li>Introduction to the French alphabet and pronunciation.</li>
+            <li>Basic vocabulary and common phrases.</li>
+            <li>Simple grammar rules and sentence structure.</li>
+            <li>Numbers, colors, and essential everyday expressions.</li>
+            <li>Introduction to French culture and customs.</li>
+        </ul>
+
+        <button id="ok-button" onclick="showAdditionalInfo()">OK</button>
+        <div id="additional-info"></div>
+    </section>
+
+    <script>
+        function showAdditionalInfo() {
+            const additionalInfo = document.getElementById('additional-info');
+            const okButton = document.getElementById('ok-button');
+            okButton.style.display = 'none';
+
+            const text = "Bonjour means = hello\nBonne journée means = good day\nAu revoir means = goodbye\nMerci means = thank you\nS'il vous plaît means = please";
+
+            typingEffect(text, additionalInfo, 50);
+        }
+
+        function typingEffect(text, targetElement, typingSpeed) {
+            targetElement.style.display = 'block';
+            targetElement.innerHTML = "";
+            let charIndex = 0;
+            const timer = setInterval(() => {
+                targetElement.innerHTML += text.charAt(charIndex);
+                charIndex++;
+                if (charIndex === text.length) {
+                    clearInterval(timer);
+                }
+            }, typingSpeed);
+        }
+    </script>
+
+</body>
+</html>
